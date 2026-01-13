@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Factura - IV Productos</title>
+  <link rel="stylesheet" href="css/factura.css">
+</head>
+<body>
+
+  <div class="factura-container">
+    <h1>Resumen de tu compra</h1>
+
+    <div id="resumen-carrito"></div>
+
+    <h2>Datos de envío</h2>
+    <form action="php/guardar_pedido.php" method="POST">
+
+      <input type="text" name="nombre_cliente" placeholder="Nombre" required>
+      <input type="text" name="telefono" placeholder="Teléfono" required>
+      <input type="text" name="direccion" placeholder="Dirección" required>
+      <input type="text" name="ciudad" placeholder="Ciudad" required>
+
+      <!-- OCULTOS -->
+      <input type="hidden" name="cantidad" id="cantidad">
+      <input type="hidden" name="valor_total" id="valor_total">
+      <input type="hidden" name="productos" id="productos">
+      <input type="hidden" name="metodo_pago" value="Efectivo">
+
+      <p style="margin-top:10px; font-weight:bold;">
+        💵 Método de pago: <span style="color:green;">Pago contra entrega (Efectivo)</span>
+      </p>
+
+      <button type="submit">Finalizar compra</button>
+    </form>
+  </div>
+
+  <!-- RESUMEN Y ENVÍO DEL CARRITO -->
+  <script>
+    const resumenDiv = document.getElementById("resumen-carrito");
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+    let totalFinal = 0;
+    let cantidadTotal = 0;
+
+    if (carrito.length === 0) {
+      resumenDiv.innerHTML = "<p>No hay productos en el carrito.</p>";
+    } else {
+      let html = "<table border='1'><tr><th>Producto</th><th>Cantidad</th><th>Precio</th><th>Total</th></tr>";
+
+      carrito.forEach(item => {
+        const cantidad = item.cantidad || 1;
+        const total = item.precio * cantidad;
+        cantidadTotal += cantidad;
+        totalFinal += total;
+
+        html += `
+          <tr>
+            <td>${item.nombre}</td>
+            <td>${cantidad}</td>
+            <td>$${item.precio.toLocaleString()}</td>
+            <td>$${total.toLocaleString()}</td>
+          </tr>
+        `;
+      });
+
+      html += `
+        <tr>
+          <td colspan="3"><strong>Total:</strong></td>
+          <td><strong>$${totalFinal.toLocaleString()}</strong></td>
+        </tr>
+      </table>
+      `;
+
+      resumenDiv.innerHTML = html;
+    }
+
+    // ENVIAR A PHP
+    document.getElementById("cantidad").value = cantidadTotal;
+    document.getElementById("valor_total").value = totalFinal;
+    document.getElementById("productos").value = JSON.stringify(carrito);
+  </script>
+
+</body>
+</html>

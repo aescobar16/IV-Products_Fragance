@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Productos - IV Products</title>
+  <link rel="stylesheet" href="css/productos.css" />
+</head>
+<body>
+
+  <header class="header-logo">
+    <a href="index.html">
+      <img src="Imagenes/LogoIV.png" alt="Logo IV Products" class="logo" />
+    </a>
+  </header>
+
+  <!-- BOTÓN VOLVER -->
+  <button id="btnVolver" class="btn-volver">⬅</button>
+  <script>
+    document.getElementById("btnVolver").addEventListener("click", function() {
+      window.location.href = "index.html";
+    });
+  </script>
+
+  <section class="productos" id="bienvenida">
+    <h2>Bienvenido a la sección de productos</h2>
+    <p>Explora nuestras fragancias cuidadosamente elaboradas para cada estilo.<br />
+       Elige una categoría para descubrir las opciones exclusivas que tenemos para ti.</p>
+  </section>
+
+  <nav class="botones-categorias">
+    <button onclick="abrirModal('masculino')">Nuestras fragancias</button>
+  </nav>
+
+  <div id="modal-productos" class="modal">
+    <div class="modal-contenido">
+      <button class="cerrar-modal" onclick="cerrarModal()">×</button>
+      <h2>Estos son nuestros productos</h2>
+      <p class="subtitulo">¡Lleva tu aroma preferido y disfruta de la experiencia IV Products!</p>
+      <div id="contenedor-productos-modal" class="contenedor-productos"></div>
+    </div>
+  </div>
+
+  <div id="modal-unidades">
+    <div class="modal-unidades-contenido">
+      <button class="cerrar-modal-unidades" onclick="cerrarModalUnidades()">×</button>
+      <h2>¿Cuántas unidades quieres?</h2>
+      <p class="mensaje-envio">Si la compra va a ser destinada fuera de Caldas, Antioquia, debe ser mínimo de 4 unidades.</p>
+      <div class="controles-unidades">
+        <button onclick="cambiarUnidades(-1)">−</button>
+        <span id="unidades-mostradas">5</span>
+        <button onclick="cambiarUnidades(1)">+</button>
+      </div>
+      <button id="btn-confirmar-unidades" onclick="confirmarUnidades()">Confirmar</button>
+      <p id="error-unidades">Debes seleccionar al menos 5 unidades.</p>
+    </div>
+  </div>
+
+  <div id="modal-resumen" class="modal">
+    <div class="modal-contenido">
+      <button class="cerrar-modal" onclick="cerrarResumen()">×</button>
+      <h2>Resumen de tu pedido</h2>
+      <div id="contenido-resumen"></div>
+      <p id="total-resumen"></p>
+      <button onclick="finalizarCompra()" type="button">Finalizar compra</button>
+    </div>
+  </div>
+
+  <div id="mensaje-carrito" class="mensaje-carrito"></div>
+
+  <script src="js/IV.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

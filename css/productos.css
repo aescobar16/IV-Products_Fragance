@@ -1,0 +1,342 @@
+/* ===== RESET Y BASE ===== */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f9f9f6;
+  color: #333;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* ===== LOGO ===== */
+.header-logo {
+  text-align: center;
+  padding: 1rem 0;
+  background: linear-gradient(120deg, #e0f7fa, #f1f8f9);
+}
+
+.logo {
+  width: 140px;
+  height: auto;
+  animation: float 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(57,255,20,0.3));
+  transition: transform 0.3s ease;
+}
+.logo:hover {
+  transform: scale(1.08) rotate(-3deg);
+}
+
+/* ===== BOTÓN VOLVER ===== */
+.btn-volver {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: linear-gradient(135deg, #39ff14, #7d3cff);
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 1000;
+}
+.btn-volver:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 18px rgba(125,60,255,0.5);
+}
+
+/* ===== SECCIÓN BIENVENIDA ===== */
+.productos {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 18px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  animation: fadeIn 1s ease;
+}
+.productos h2 {
+  color: #1e90ff;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 6px rgba(125,60,255,0.3);
+}
+
+/* ===== BOTONES DE CATEGORÍAS ===== */
+.botones-categorias {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+.botones-categorias button {
+  background: linear-gradient(135deg, #39ff14, #7d3cff);
+  background-size: 200% 200%;
+  animation: gradientMove 3s ease infinite;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 28px;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 0 12px rgba(125,60,255,0.35);
+}
+.botones-categorias button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px rgba(57,255,20,0.45);
+}
+
+/* ===== MODAL GENERAL ===== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 900;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+.modal-contenido {
+  background: #fff;           /* fondo blanco en TODO el modal */
+  padding: 2rem;
+  border-radius: 18px;
+  max-width: 750px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;           /* scroll en todo el modal */
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  animation: aparecer 0.3s ease;
+  position: relative;
+}
+
+/* Mejorar títulos y textos del modal */
+.modal-contenido h2 {
+  color: #1e90ff;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 6px rgba(125,60,255,0.2);
+}
+.modal-contenido p {
+  color: #444;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+
+/* Scroll Chrome, Edge, Safari */
+.modal-contenido::-webkit-scrollbar {
+  width: 8px;
+}
+.modal-contenido::-webkit-scrollbar-track {
+  background: #eaeaea;
+  border-radius: 10px;
+}
+.modal-contenido::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #7d3cff);
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+.modal-contenido::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #1e90ff, #7d3cff);
+}
+
+
+.cerrar-modal {
+  position: absolute;
+  top: 15px; right: 20px;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.3s;
+}
+.cerrar-modal:hover {
+  color: #1e90ff;
+}
+
+/* ===== PRODUCTOS EN MODAL ===== */
+.contenedor-productos,
+#contenedor-productos-modal {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+  padding: 10px;
+}
+.producto {
+  background: linear-gradient(135deg, #ffffff, #f1f8f9);
+  border-radius: 18px;
+  padding: 14px;
+  text-align: center;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+}
+.producto:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 10px 22px rgba(125,60,255,0.25);
+}
+.producto img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain; /* encaja toda la imagen */
+  background-color: #fff; /* opcional, rellena con blanco */
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.producto h3 {
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+  color: #1e90ff;
+}
+.producto p {
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 12px;
+}
+.producto button {
+  background: linear-gradient(135deg, #39ff14, #7d3cff);
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.25s ease;
+  font-weight: bold;
+}
+.producto button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 12px rgba(57,255,20,0.4);
+}
+
+/* ===== MODAL UNIDADES ===== */
+#modal-unidades {
+  display: none;
+  position: fixed;
+  z-index: 950;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+.modal-unidades-contenido {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 18px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+}
+.controles-unidades {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.controles-unidades button {
+  background: #1e90ff;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.controles-unidades button:hover {
+  background: #7d3cff;
+}
+#btn-confirmar-unidades {
+  background: linear-gradient(135deg, #39ff14, #7d3cff);
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 28px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(125,60,255,0.3);
+  transition: transform 0.3s ease;
+}
+#btn-confirmar-unidades:hover {
+  transform: scale(1.05);
+}
+#error-unidades {
+  display: none;
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 0.8rem;
+}
+
+/* ===== MENSAJE CARRITO ===== */
+.mensaje-carrito {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #1e90ff;
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 1000;
+}
+.mensaje-carrito.visible {
+  opacity: 1;
+}
+
+/* ===== BOTÓN FINALIZAR COMPRA ===== */
+#modal-resumen .modal-contenido button:not(.cerrar-modal) {
+  background: linear-gradient(135deg, #39ff14, #7d3cff);
+  padding: 0.9rem 1.2rem;
+  border-radius: 28px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  max-width: 260px;
+  margin: 1rem auto 0;
+  box-shadow: 0 0 14px rgba(125,60,255,0.3);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+#modal-resumen .modal-contenido button:not(.cerrar-modal):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 22px rgba(57,255,20,0.45);
+}
+#modal-resumen #total-resumen {
+  margin-top: 0.8rem;
+  font-weight: 700;
+  color: #1e90ff;
+  font-size: 1.1rem;
+}
+
+/* ===== ANIMACIONES ===== */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes aparecer {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
